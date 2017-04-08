@@ -12,6 +12,8 @@
 		455DE1BD1E995D0100C6617E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455DE1BB1E995D0100C6617E /* Main.storyboard */; };
 		455DE1BF1E995D0100C6617E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455DE1BE1E995D0100C6617E /* Assets.xcassets */; };
 		455DE1C21E995D0100C6617E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455DE1C01E995D0100C6617E /* LaunchScreen.storyboard */; };
+		455DE1CA1E995D9900C6617E /* APAXCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455DE1C91E995D9900C6617E /* APAXCarouselController.swift */; };
+		455DE1CC1E995DCE00C6617E /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455DE1CB1E995DCE00C6617E /* ContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		455DE1BE1E995D0100C6617E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		455DE1C11E995D0100C6617E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		455DE1C31E995D0100C6617E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		455DE1C91E995D9900C6617E /* APAXCarouselController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAXCarouselController.swift; sourceTree = "<group>"; };
+		455DE1CB1E995DCE00C6617E /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				455DE1BE1E995D0100C6617E /* Assets.xcassets */,
 				455DE1C01E995D0100C6617E /* LaunchScreen.storyboard */,
 				455DE1C31E995D0100C6617E /* Info.plist */,
+				455DE1C91E995D9900C6617E /* APAXCarouselController.swift */,
+				455DE1CB1E995DCE00C6617E /* ContentViewController.swift */,
 			);
 			path = APAXCarousel;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455DE1CC1E995DCE00C6617E /* ContentViewController.swift in Sources */,
+				455DE1CA1E995D9900C6617E /* APAXCarouselController.swift in Sources */,
 				455DE1BA1E995D0100C6617E /* ViewController.swift in Sources */,
 				455DE1B81E995D0100C6617E /* AppDelegate.swift in Sources */,
 			);
