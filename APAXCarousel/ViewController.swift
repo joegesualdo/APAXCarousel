@@ -32,6 +32,11 @@ class ViewController: UIViewController {
       onChangePage: {pageIndex in
 //        self.pageControlController.selectAtIndex(pageIndex)
         print("Changed to page: \(pageIndex)")
+      },
+      onScroll: {(transitioningToPageIndex, percentComplete) in
+        self.walkThroughtViewController.contentControllers[transitioningToPageIndex].view.alpha = CGFloat(percentComplete)
+        print("\(percentComplete*100)% complete transitioning to page \(transitioningToPageIndex)")
+
       }
     )
     

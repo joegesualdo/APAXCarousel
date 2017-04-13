@@ -5,7 +5,7 @@
 
 # Install
 ```ruby
-pod 'APAXCarousel', '0.1.0'
+pod 'APAXCarousel', '0.1.1'
 ```
 
 # Usage
@@ -21,6 +21,10 @@ class ViewController: UIViewController {
       withContentControllers: contentControllers,
       onChangePage: {pageIndex in
         print("Changed to page: \(pageIndex)")
+      },
+      onScroll: {(transitioningToPageIndex, percentComplete) in
+        print("\(percentComplete*100)% complete transitioning to page: \(transitioningToPageIndex)")
+
       }
     )
 

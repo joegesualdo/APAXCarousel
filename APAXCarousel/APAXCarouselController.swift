@@ -9,16 +9,18 @@
 import Foundation
 import UIKit
 
-public class APAXCarouselController: UIViewController , UIPageViewControllerDataSource, UIPageViewControllerDelegate{
+public class APAXCarouselController: UIViewController , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate {
   var pageViewController: UIPageViewController!
   var contentControllers: [UIViewController]!
   var currentIndex: Int = 0
   var transitioningToIndex: Int = 0
   var onChangePage: ((_ pageIndex: Int) -> Void)!
+  var onScroll: ((_ transitioningToPageIndex: Int, _ percentComplete: Float) -> Void)!
   
-  public convenience init(withContentControllers contentControllers: [UIViewController], onChangePage: @escaping ((_ pageIndex: Int) -> Void)){
+  public convenience init(withContentControllers contentControllers: [UIViewController], onChangePage: @escaping ((_ pageIndex: Int) -> Void), onScroll: @escaping ((_ transitioningToPageIndex: Int, _ percentComplete: Float) -> Void)){
     self.init()
     self.onChangePage = onChangePage
+    self.onScroll = onScroll
     self.contentControllers = contentControllers
   }
   
@@ -39,6 +41,13 @@ public class APAXCarouselController: UIViewController , UIPageViewControllerData
     self.view.backgroundColor = UIColor.white
     
     self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    // We want to use the underlying ScrollView Delegate to get the scroll position, so we need to set it's delegate to this controller
+    self.pageViewController.view.subviews.forEach({ view in
+      if let view = view as? UIScrollView {
+        view.delegate = self as! UIScrollViewDelegate
+        return
+      }
+    })
     self.pageViewController.dataSource = self
     self.pageViewController.delegate = self
     
@@ -107,7 +116,7 @@ public class APAXCarouselController: UIViewController , UIPageViewControllerData
     } else {
       // Need this incase we do a half slide but don't do the full thing
       if (transitioningToIndex > previousIndex!) {
-        if (currentIndex > 0) {
+        if (currentIndex >= 0) {
           transitioningToIndex = transitioningToIndex - 1
         }
       } else {
@@ -120,5 +129,23 @@ public class APAXCarouselController: UIViewController , UIPageViewControllerData
   public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
     let futureIndex = self.contentControllers.index(of: pendingViewControllers[0])
     self.transitioningToIndex = futureIndex!
+  }
+  
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let viewWidth = self.view.frame.size.width
+    let xOffset = scrollView.contentOffset.x
+    if (transitioningToIndex < currentIndex) {
+      if (currentIndex != 0) {
+        let percent = Float((viewWidth - xOffset)/viewWidth)
+        self.onScroll(transitioningToIndex, percent)
+
+      }
+    } else if (transitioningToIndex > currentIndex){
+      if (currentIndex != (contentControllers.count - 1)) {
+        let percent = Float((xOffset - viewWidth)/viewWidth)
+        self.onScroll(transitioningToIndex, percent)
+      }
+    }
+    
   }
 }
