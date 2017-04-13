@@ -44,7 +44,7 @@ public class APAXCarouselController: UIViewController , UIPageViewControllerData
     // We want to use the underlying ScrollView Delegate to get the scroll position, so we need to set it's delegate to this controller
     self.pageViewController.view.subviews.forEach({ view in
       if let view = view as? UIScrollView {
-        view.delegate = self as! UIScrollViewDelegate
+        view.delegate = self as UIScrollViewDelegate
         return
       }
     })

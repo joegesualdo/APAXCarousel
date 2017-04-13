@@ -5,7 +5,7 @@
 
 # Install
 ```ruby
-pod 'APAXCarousel', '0.1.1'
+pod 'APAXCarousel', '0.1.2'
 ```
 
 # Usage
